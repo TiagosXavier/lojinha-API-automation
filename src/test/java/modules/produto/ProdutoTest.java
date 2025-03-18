@@ -17,12 +17,12 @@ public class ProdutoTest {
 
     @BeforeEach
     public void beforeEach() {
-        // Configurando os dados da API Rest da Lojinha
+
         baseURI = "http://165.227.93.41";
-        //port = 8080
+
         basePath = "lojinha";
 
-        // Obter o token do usuario admin
+
         this.token = given()
                 .contentType(ContentType.JSON)
                 .body(UsuarioDataFactory.criarUsuarioAdmin())
@@ -37,8 +37,6 @@ public class ProdutoTest {
     @DisplayName("Validar os limites proibidos do valor do produto")
     public void testValidarLimitesProibidosValorProduto(){
 
-    //tentar inserir um produto com valor 0.00 e validar que a mensagem do erro foi apresentada e o
-    //status code retornado foi 422
 
         given()
                 .contentType(ContentType.JSON)
@@ -51,8 +49,6 @@ public class ProdutoTest {
                 .body("error", equalTo("O valor do produto deve estar entre R$ 0,01 e R$ 7.000,00"))
                 .statusCode(422);
 
-        //tentar inserir um produto com valor 7000.01 e validar que a mensagem do erro foi apresentada e o
-        //status code retornado foi 422
 
         given()
                 .contentType(ContentType.JSON)
